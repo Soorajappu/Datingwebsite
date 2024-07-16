@@ -1,0 +1,25 @@
+main {
+    background: #07003b;
+    height: 100vh; /* 100% of the viewport height */
+    width: 100vw; /* 100% of the viewport width */
+    margin: 0; /* Remove default margin */
+    overflow-x: hidden;
+}
+
+label{
+    color: white;
+    
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(95% - 17px); /* Adjust width to avoid scrollbar overlap */
+    /* width: 100%; Ensure full width */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+    background-color: #f001f0;
+    margin-left: 40px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}

@@ -1,0 +1,22 @@
+{% extends "shared/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid mt-7">
+        <div class="row mb-5">
+            <div class="col"></div>
+            <div class="col-3 mt-3">
+                <h1 class='title-detail text-center'>Details</h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ detail_form.as_p }}
+                    {{ image_form.as_p }}
+                    {{ video_form.as_p }}
+                    <div class='d-grid'>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,12 @@
+.group-bg{
+    background: transparent;
+}
+
+.group-bg:hover{
+    background: #02006b;
+}
+
+.list-group-item.active {
+    background-color: #007bff; /* Change this to the desired active background color */
+    color: white;
+}
