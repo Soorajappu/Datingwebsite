@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import CreateView
-from .forms import UserCreateForm,PersonalDetailsForm,ImageForm,VideoForm,EmployeeForm,EmployerForm,JobSeekerForm
+from .forms import UserCreateForm,PersonalDetailsForm,EmployeeForm,EmployerForm,JobSeekerForm
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 
@@ -37,6 +37,4 @@ class DetailCreateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['detail_form'] = PersonalDetailsForm()
-        context['image_form'] = ImageForm()
-        context['video_form'] = VideoForm()
         return context

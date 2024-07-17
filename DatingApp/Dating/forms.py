@@ -1,5 +1,10 @@
 from django import forms
-from .models import User, PersonalDetails, ProfileMultPic, Videos, Hobbies, Interests, Employee, Employer, JobSeeker
+from .models import User, PersonalDetails, Hobbies, Interests, Employee, Employer, JobSeeker
+
+GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+    ]
 
 class UserCreateForm(forms.ModelForm):
 
@@ -14,32 +19,27 @@ class UserCreateForm(forms.ModelForm):
         
         
 class PersonalDetailsForm(forms.ModelForm):
+    gender = forms.ChoiceField(choices=GENDER_CHOICES, widget=forms.RadioSelect(attrs={'class': 'radio-btn gap-5'}))
+    
     class Meta:
         model = PersonalDetails
-        fields = ['age', 'dob', 'hobbies', 'interest', 'qualification', 'profile_pic']
+        fields = ['age', 'gender', 'dob', 'hobbies', 'interest', 'qualification', 'profile_pic']
+        labels ={
+            'age': 'Age',
+            'gender': 'Gender',
+            'dob': 'Date of Birth',
+            'hobbies': 'Hobbies',
+            'interest': 'Interests',
+            'qualification': 'Qualifications',
+            'profile_pic': 'Profile Picture',
+        }
         widgets = {
-            'age': forms.NumberInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'dob': forms.DateInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'hobbies': forms.Select(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'interest': forms.Select(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'qualification': forms.Select(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'profile_pic': forms.FileInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-        }
-
-class ImageForm(forms.ModelForm):
-    class Meta:
-        model = ProfileMultPic
-        fields = ['image']
-        widgets={
-            'image': forms.FileInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-        }
-
-class VideoForm(forms.ModelForm):
-    class Meta:
-        model = Videos
-        fields = ['video']
-        widgets={
-            'video': forms.FileInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
+            'age': forms.NumberInput(attrs={'class': 'form-control h-30'}),
+            'dob': forms.DateInput(attrs={'class': 'form-control h-30'}),
+            'hobbies': forms.Select(attrs={'class': 'form-control h-30'}),
+            'interest': forms.Select(attrs={'class': 'form-control h-30'}),
+            'qualification': forms.Select(attrs={'class': 'form-control h-30'}),
+            'profile_pic': forms.FileInput(attrs={'class': 'form-control h-30'}),
         }
 
 
@@ -48,9 +48,9 @@ class EmployeeForm(forms.ModelForm):
         model = Employee
         fields = ['company_name', 'designation', 'location']
         widgets={
-            'company_name': forms.TextInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'designation': forms.TextInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'location': forms.TextInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
+            'company_name': forms.TextInput(attrs={'class': 'form-control h-30'}),
+            'designation': forms.TextInput(attrs={'class': 'form-control h-30'}),
+            'location': forms.TextInput(attrs={'class': 'form-control h-30'}),
         }
 
 class EmployerForm(forms.ModelForm):
@@ -58,9 +58,9 @@ class EmployerForm(forms.ModelForm):
         model = Employer
         fields = ['company_name', 'designation', 'location']
         widgets={
-            'company_name': forms.TextInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'designation': forms.TextInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
-            'location': forms.TextInput(attrs={'class': 'form-control', 'style':'height: 30px;', 'style':'margin-bottom: -8px;'}),
+            'company_name': forms.TextInput(attrs={'class': 'form-control h-30'}),
+            'designation': forms.TextInput(attrs={'class': 'form-control h-30'}),
+            'location': forms.TextInput(attrs={'class': 'form-control h-30'}),
         }
         
         

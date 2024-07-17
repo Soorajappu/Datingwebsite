@@ -23,3 +23,22 @@ nav{
     border-bottom-left-radius: 25px;
     border-bottom-right-radius: 25px;
 }
+
+/* styles.css */
+.radio-btn{
+    display: flex;
+}
+
+.radio-btn label{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-btn input{
+    margin-right: 5px;
+}
+
+.h-30{
+    height: 30px;
+}

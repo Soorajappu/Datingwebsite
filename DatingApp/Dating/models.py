@@ -36,8 +36,14 @@ class Qualifications(models.Model):
     
     
 class PersonalDetails(models.Model):
+    GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
+    ]
     id = models.AutoField(primary_key=True)
     age = models.IntegerField()
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     dob = models.DateField()
     hobbies = models.ForeignKey(Hobbies, on_delete=models.CASCADE)
     interest = models.ForeignKey(Interests, on_delete=models.CASCADE)
@@ -47,23 +53,6 @@ class PersonalDetails(models.Model):
     def __str__(self):
         return f"Personal Details of {self.id}"
     
-    
-class ProfileMultPic(models.Model):
-    id = models.AutoField(primary_key=True)
-    personal_detail = models.ForeignKey(PersonalDetails, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='personal_images/', blank=True, null=True)
-    
-    def __str__(self):
-        return f"Image {self.id} for Personal Detail {self.personal_detail.id}"
-    
-    
-class Videos(models.Model):
-    id = models.AutoField(primary_key=True)
-    personal_detail = models.ForeignKey(PersonalDetails, related_name='videos', on_delete=models.CASCADE)
-    video = models.FileField(upload_to='reels_video/', blank=True, null=True)
-    
-    def __str__(self):
-        return f"Video {self.id} for Personal Detail {self.personal_detail.id}"
     
     
 class Employee(models.Model):

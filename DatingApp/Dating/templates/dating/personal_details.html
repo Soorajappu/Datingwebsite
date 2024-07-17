@@ -1,17 +1,42 @@
 {% extends "shared/base.html" %}
 {% load static %}
 {% block content %}
-    <div class="container-fluid mt-7">
+    <div class="container-fluid mt-5">
         <div class="row mb-5">
             <div class="col"></div>
             <div class="col-3 mt-3">
                 <h1 class='title-detail text-center'>Details</h1>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ detail_form.as_p }}
-                    {{ image_form.as_p }}
-                    {{ video_form.as_p }}
-                    <div class='d-grid'>
+                    <div class="mb-3">
+                        <label for="age" >{{ detail_form.age.label }} :</label>
+                        {{ detail_form.age }}
+                    </div>
+                    <div class="mb-3 radio-btn gap-3">
+                        <label for="gender">{{ detail_form.gender.label }} :</label>
+                        <div>{{ detail_form.gender }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="dob">{{ detail_form.dob.label }} :</label>
+                        {{ detail_form.dob }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="hobbies">{{ detail_form.hobbies.label }} :</label>
+                        {{ detail_form.hobbies }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="interest">{{ detail_form.interest.label }} :</label>
+                        {{ detail_form.interest }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="qualification">{{ detail_form.qualification.label }} :</label>
+                        {{ detail_form.qualification }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="profile_pic">{{ detail_form.profile_pic.label }} :</label>
+                        {{ detail_form.profile_pic }}
+                    </div>
+                    <div class='d-grid '>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
