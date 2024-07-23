@@ -1,10 +1,10 @@
 {% extends "shared/base.html" %}
 {% load static %}
 {% block content %}
-    <div class="container-fluid mt-5">
-        <div class="row mb-5">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
             <div class="col"></div>
-            <div class="col-3 mt-3">
+            <div class="col-lg-4 col-md-5 col-sm-7 col-12 mt-3">
                 <h1 class='title-detail text-center'>Details</h1>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -18,7 +18,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="dob">{{ detail_form.dob.label }} :</label>
-                        {{ detail_form.dob }}
+                        <div class="input-group date" id="datepicker">
+                            {{ detail_form.dob }}
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="hobbies">{{ detail_form.hobbies.label }} :</label>
@@ -45,3 +50,20 @@
         </div>
     </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true,
+                startView: 2, // Start with the decade view
+                minViewMode: 0, // Minimum view mode to month
+                maxViewMode: 2, // Maximum view mode to decade
+                container: '#datepicker', // Ensures the datepicker is appended to the input group
+                orientation: "bottom auto", // Ensures the datepicker appears below the input field
+            });
+        });
+    </script>
+{% endblock scripts %}
