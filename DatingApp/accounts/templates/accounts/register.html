@@ -1,0 +1,144 @@
+{% extends "shared/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid mt-7">
+    <div class="row">   
+        <div class="col"></div>
+        <div class="col-lg-3 col-md-5 col-sm-6 col-10 mt-5">
+            <h1 class='title-sign-up text-center'>Sign Up</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username">{{ form.username.label }} :</label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-3">
+                    <label for="email">{{ form.email.label }} :</label>
+                    {{ form.email }}
+                </div>
+                <div class="mb-3">
+                    <label for="password">{{ form.password.label }} :</label>
+                    {{ form.password }}
+                </div>
+                <div class="mb-3">
+                    <label for="confirm_password">{{ form.confirm_password.label }} :</label>
+                    {{ form.confirm_password }}
+                </div>
+                <div class="mb-3">
+                    <label for="age">{{ form.age.label }} :</label>
+                    {{ form.age }}
+                </div>
+                <div class="mb-3 radio-btn gap-3">
+                    <label for="gender">{{ form.gender.label }} :</label>
+                    <div>{{ form.gender }}</div>
+                </div>
+                <div class="mb-3">
+                    <label for="dob">{{ form.dob.label }} :</label>
+                    <div class="input-group date" id="datepicker">
+                        {{ form.dob }}
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="highest_qualification">{{ form.highest_qualification.label }} :</label>
+                    {{ form.highest_qualification }}
+                </div>
+                <div class="mb-3">
+                    <label for="hobbies">{{ form.hobbies.label }} :</label>
+                    {{ form.hobbies }}
+                </div>
+                <div class="mb-3">
+                    <label for="interest">{{ form.interest.label }} :</label>
+                    {{ form.interest }}
+                </div>
+                <div class="mb-3">
+                    <label for="smocking_habit">{{ form.smocking_habit.label }} :</label>
+                    {{ form.smocking_habit }}
+                </div>
+                <div class="mb-3">
+                    <label for="drinking_habit">{{ form.drinking_habit.label }} :</label>
+                    {{ form.drinking_habit }}
+                </div>
+                <div class="mb-3">
+                    <label for="profile_pic">{{ form.profile_pic.label }} :</label>
+                    {{ form.profile_pic }}
+                </div>
+                <div class="mb-3" id="id_type">
+                    <label for="types">{{ form.types.label }} :</label>
+                    {{ form.types }}
+                </div>
+                <div class="mb-3" id="company_name" style="display: none;">
+                    <label for="company_name">{{ form.company_name.label }} :</label>
+                    {{ form.company_name }}
+                </div>
+                <div class="mb-3" id="designation" style="display: none;">
+                    <label for="designation">{{ form.designation.label }} :</label>
+                    {{ form.designation }}
+                </div>
+                <div class="mb-3" id="location" style="display: none;">
+                    <label for="location">{{ form.location.label }} :</label>
+                    {{ form.location }}
+                </div>
+                <div class="mb-3" id="skill_level" style="display: none;">
+                    <label for="skill_level">{{ form.skill_level.label }} :</label>
+                    {{ form.skill_level }}
+                </div>
+                <div class='d-grid'>
+                    <button type="submit" class="btn btn-primary">Signup</button>
+                </div>
+                <div class='line-text d-grid text-center mt-3'>OR</div>
+                
+                <a href="#" class="btn btn-danger d-grid mt-3">Login with Google</a>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            todayHighlight: true,
+            startView: 2, // Start with the decade view
+            minViewMode: 0, // Minimum view mode to month
+            maxViewMode: 2, // Maximum view mode to decade
+            container: '#datepicker', // Ensures the datepicker is appended to the input group
+            orientation: "bottom auto", // Ensures the datepicker appears below the input field
+        });
+
+        function toggleFields(types) {
+            if (types === 'employee' || types === 'employer') {
+                $('#company_name').show();
+                $('#designation').show();
+                $('#location').show();
+                $('#skill_level').hide();
+            } else if (types === 'job_seeker') {
+                $('#company_name').hide();
+                $('#designation').hide();
+                $('#location').hide();
+                $('#skill_level').show();
+            } else {
+                $('#company_name').hide();
+                $('#designation').hide();
+                $('#location').hide();
+                $('#skill_level').hide();
+            }
+        }
+
+        // Initialize fields based on the current type value
+        toggleFields($('#id_type select[name="types"]').val());
+
+        $('#id_type select[name="types"]').change(function() {
+            toggleFields($(this).val());
+        });
+    });
+</script>
+{% endblock scripts %}

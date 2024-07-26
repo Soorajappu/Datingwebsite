@@ -9,16 +9,28 @@ class Hobbies(models.Model):
     slug = models.SlugField(unique=True, blank=True, null=True)
     
     
+    def __str__(self):
+        return self.hobby
+    
+    
 class Interests(models.Model):
     id = models.AutoField(primary_key=True)
     interest = models.CharField(max_length=250)
     slug = models.SlugField(unique=True, blank=True, null=True)
     
     
+    def __str__(self):
+        return self.interest
+    
+    
 class Qualifications(models.Model):
     id = models.AutoField(primary_key=True)
     qualification = models.CharField(max_length=250)
     slug = models.SlugField(unique=True, blank=True, null=True)
+    
+    
+    def __str__(self):
+        return self.qualification
     
     
 class User(AbstractUser):
@@ -36,17 +48,24 @@ class User(AbstractUser):
         ('intermediate', 'Intermediate'),
         ('expert', 'Expert'),
     ]
-    id = models.AutoField(primary_key=True)
     age = models.IntegerField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=GENDER_CHOICES)
     dob = models.DateField()
-    hobbies = models.ForeignKey(Hobbies, on_delete=models.CASCADE)
-    interest = models.ForeignKey(Interests, on_delete=models.CASCADE)
-    qualification = models.ForeignKey(Qualifications, on_delete=models.CASCADE)
+    highest_qualification = models.ForeignKey(to=Qualifications, on_delete=models.CASCADE, null=True)
+    hobbies = models.ManyToManyField(to=Hobbies, null=True)
+    interest = models.ForeignKey(to=Interests, on_delete=models.CASCADE, null=True)
+    smocking_habit = models.BooleanField(default=False)
+    drinking_habit = models.BooleanField(default=False)
     profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
-    type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
-    company_name = models.CharField(max_length=100)
-    designation = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
+    types = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
+    company_name = models.CharField(max_length=100, null=True)
+    designation = models.CharField(max_length=100, null=True)
+    location = models.CharField(max_length=100, null=True)
     skill_level = models.CharField(max_length=20, choices=SKILL_LEVEL_CHOICES)
     slug = models.SlugField(unique=True, blank=True, null=True)
+    
+    
+# class UserHobbies(models.Model):
+#     id = models.BigAutoField(primary_key=True)
+#     user = models.ForeignKey(to=User)
+#     hobby = models.ForeignKey(to=Hobbies)
