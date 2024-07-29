@@ -1,0 +1,56 @@
+{% extends "shared/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid mt-7">
+    <div class="row">   
+        <div class="col"></div>
+        <div class="col-lg-3 col-md-5 col-sm-6 col-10 mt-5">
+            <h1 class='title-sign-up text-center'>User Details Registration</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="age">{{ form.age.label }} :</label>
+                    {{ form.age }}
+                </div>
+                <div class="mb-3">
+                    <label for="gender">{{ form.gender.label }} :</label>
+                    {{ form.gender }}
+                </div>
+                <div class="mb-3">
+                    <label for="dob">{{ form.dob.label }} :</label>
+                    {{ form.dob }}
+                </div>
+                <div class="mb-3">
+                    <label for="highest_qualification">{{ form.highest_qualification.label }} :</label>
+                    {{ form.highest_qualification }}
+                </div>
+                <div class="mb-3">
+                    <label for="hobbies">{{ form.hobbies.label }} :</label>
+                    {{ form.hobbies }}
+                </div>
+                <div class="mb-3">
+                    <label for="interest">{{ form.interest.label }} :</label>
+                    {{ form.interest }}
+                </div>
+                <div class="mb-3">
+                    <label for="smocking_habit">{{ form.smocking_habit.label }} :</label>
+                    {{ form.smocking_habit }}
+                </div>
+                <div class="mb-3">
+                    <label for="drinking_habit">{{ form.drinking_habit.label }} :</label>
+                    {{ form.drinking_habit }}
+                </div>
+                <div class="mb-3">
+                    <label for="profile_pic">{{ form.profile_pic.label }} :</label>
+                    {{ form.profile_pic }}
+                </div>
+                <div class='d-grid mb-5'>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                
+                </div>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock content %}

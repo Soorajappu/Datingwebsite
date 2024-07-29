@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Hobbies(models.Model):
     id = models.AutoField(primary_key=True)
-    hobby = models.CharField(max_length=250)
+    hobby = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     
     
@@ -15,7 +15,7 @@ class Hobbies(models.Model):
     
 class Interests(models.Model):
     id = models.AutoField(primary_key=True)
-    interest = models.CharField(max_length=250)
+    interest = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     
     
@@ -25,7 +25,7 @@ class Interests(models.Model):
     
 class Qualifications(models.Model):
     id = models.AutoField(primary_key=True)
-    qualification = models.CharField(max_length=250)
+    qualification = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     
     
@@ -48,16 +48,15 @@ class User(AbstractUser):
         ('intermediate', 'Intermediate'),
         ('expert', 'Expert'),
     ]
-    age = models.IntegerField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=GENDER_CHOICES)
-    dob = models.DateField()
+    age = models.IntegerField(null=True, blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    dob = models.DateField(null=True, blank=True)
     highest_qualification = models.ForeignKey(to=Qualifications, on_delete=models.CASCADE, null=True)
     hobbies = models.ManyToManyField(to=Hobbies, null=True)
     interest = models.ForeignKey(to=Interests, on_delete=models.CASCADE, null=True)
     smocking_habit = models.BooleanField(default=False)
     drinking_habit = models.BooleanField(default=False)
     profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
-    types = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
     company_name = models.CharField(max_length=100, null=True)
     designation = models.CharField(max_length=100, null=True)
     location = models.CharField(max_length=100, null=True)

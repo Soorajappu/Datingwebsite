@@ -1,0 +1,20 @@
+{% extends "shared/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid mt-7">
+    <div class="row">   
+        <div class="col"></div>
+        <div class="col-lg-3 col-md-5 col-sm-6 col-10 mt-5">
+            <h1 class='title-sign-up text-center'>User Login</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class='d-grid mb-5'>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock content %}
