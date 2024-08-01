@@ -1,0 +1,20 @@
+{% extends "shared/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid mt-3">
+    <div class="row">   
+        <div class="col"></div>
+        <div class="col-lg-3 col-md-5 col-sm-6 col-10 mt-5">
+            <h1 class='title-sign-up text-center'>Employment Details</h1>
+            
+                
+            <div class='d-grid mb-5'>
+                <a href="{% url 'accounts:employer_detail' %}" class="btn btn-primary">Employer/Employee</a>
+                <a href="{% url 'accounts:jobseeker' %}" class="btn btn-success">Job Seeker</a>
+            </div>
+                
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock content %}

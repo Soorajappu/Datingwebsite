@@ -1,17 +1,21 @@
 {% extends "shared/base.html" %}
 {% load static %}
 {% block content %}
-<div class="container-fluid mt-7">
+<div class="container-fluid mt-3">
     <div class="row">   
         <div class="col"></div>
         <div class="col-lg-3 col-md-5 col-sm-6 col-10 mt-5">
             <h1 class='title-sign-up text-center'>User Login</h1>
-            <form method="post">
+            <form method="post" class="mt-4">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <div class='d-grid mb-5'>
+                <div class="mb-3">
+                    <a class="forgot-pass">Forgot password?</a>
+                </div>
+                <div class='d-grid mb-3'>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
+                <p class="no-account">Don't have an account? <a href="{% url 'accounts:register' %}" class="signup-link">Sign up</a></p>
             </form>
         </div>
         <div class="col"></div>

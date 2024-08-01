@@ -2,16 +2,20 @@
 {% load static %}
 {% block content %}
 
-<div class="container-fluid mt-7">
+<div class="container-fluid">
     <div class="row">   
         <div class="col"></div>
-        <div class="col-lg-3 col-md-5 col-sm-6 col-10 mt-5">
+        <div class="col-lg-3 col-md-5 col-sm-6 col-10 mt-2">
             <h1 class='title-sign-up text-center'>Sign Up</h1>
             <form method="post">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="username">{{ form.username.label }} :</label>
                     {{ form.username }}
+                </div>
+                <div class="mb-3">
+                    <label for="phone_no">{{ form.phone_no.label }} :</label>
+                    {{ form.phone_no }}
                 </div>
                 <div class="mb-3">
                     <label for="email">{{ form.email.label }} :</label>
@@ -31,6 +35,7 @@
                 <div class='line-text d-grid text-center mt-3'>OR</div>
                 
                 <a href="#" class="btn btn-danger d-grid mt-3">Login with Google</a>
+                <p class="no-account">Already have an account? <a href="{% url 'accounts:login' %}" class="signup-link">Login</a></p>
             </form>
         </div>
         <div class="col"></div>

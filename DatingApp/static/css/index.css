@@ -1,0 +1,24 @@
+.bg-icon{
+    width: 840px;
+    opacity: 0.5;
+}
+
+.login-bt{
+    width: 260px;
+}
+
+.google-icon{
+    color: orange;
+}
+
+.no-account{
+    color: aliceblue;
+}
+
+.signup-link{
+    color: rgb(0, 255, 13);
+}
+
+.signup-link:hover{
+    color: rgba(0, 255, 13, 0.788);
+}

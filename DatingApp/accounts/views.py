@@ -29,10 +29,11 @@ class UserCreateView(CreateView):
 class RegisterBasicDetailView(LoginRequiredMixin, FormView):
     template_name = 'accounts/register_detail.html'
     form_class = UserRegisterDetailForm
-    success_url = reverse_lazy('accounts:home')
+    success_url = reverse_lazy('accounts:employment')
     
     def get_form_kwargs(self):
         return {'instance': self.request.user, 'data': self.request.POST}
+    
     
     def get_initial(self) -> dict[str, any]:
         return super().get_initial()
@@ -40,6 +41,7 @@ class RegisterBasicDetailView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         form.save()
         return redirect(self.success_url)
+    
     
     
 class UserLoginView(LoginView):
@@ -51,5 +53,46 @@ class UserLoginView(LoginView):
         return reverse_lazy('accounts:home')
     
     
-class UserLogoutView(LogoutView):
+    
+class IndexView(TemplateView):
+    template_name = 'accounts/index.html'
+    
+    
+class EmploymentView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/employment.html'
+    
+    
+class EmployerDetailView(LoginRequiredMixin, FormView):
+    template_name = 'accounts/employer.html'
+    form_class = EmploymentForm
+    success_url = reverse_lazy('accounts:relationship')
+    
+    def get_form_kwargs(self):
+        return {'instance': self.request.user, 'data': self.request.POST}
+    
+    
+    def form_valid(self, form):
+        form.save()
+        return redirect(self.success_url)
+    
+    
+class JobSeekerDetailView(LoginRequiredMixin, FormView):
+    template_name = 'accounts/jobseeker.html'
+    form_class = EmploymentJobseekerForm
+    success_url = reverse_lazy('accounts:relationship')
+    
+    def get_form_kwargs(self):
+        return {'instance': self.request.user, 'data': self.request.POST}
+    
+    
+    def form_valid(self, form):
+        form.save()
+        return redirect(self.success_url)
+    
+
+class RelationshipView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/relationship.html'
+    
+    
+class UserLogoutView(LoginRequiredMixin, LogoutView):
     next_page = 'accounts:login'

@@ -1,0 +1,8 @@
+.forgot-pass{
+    color: rgb(28, 99, 252);
+    cursor: pointer;
+}
+
+.forgot-pass:hover{
+    color: rgb(27, 61, 253);
+}
