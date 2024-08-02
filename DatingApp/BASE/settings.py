@@ -153,8 +153,8 @@ LOGIN_REDIRECT_URL = 'accounts:home'
 LOGOUT_URL = 'logout'
 LOGOUT_REDIRECT_URL = 'accounts:login'
 
-# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '329738507320-9iskug3eop7js9amfsuc0l58b3jkh9rh.apps.googleusercontent.com'
-# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '329738507320-9iskug3eop7js9amfsuc0l58b3jkh9rh.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '################################'
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
