@@ -12,13 +12,9 @@
 }
 
 .no-account{
-    color: aliceblue;
+    color: rgb(0, 0, 0);
 }
 
-.signup-link{
-    color: rgb(0, 255, 13);
-}
-
-.signup-link:hover{
-    color: rgba(0, 255, 13, 0.788);
+.title-detail{
+    color: #4f1749;
 }

@@ -67,7 +67,7 @@ class User(AbstractUser):
     interest = models.ForeignKey(to=Interests, on_delete=models.CASCADE, null=True)
     smocking_habit = models.BooleanField(default=False)
     drinking_habit = models.BooleanField(default=False)
-    profile_pic = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    profile_pic = models.ImageField(upload_to='profile_pic/', blank=True, null=True)
     company_name = models.CharField(max_length=100, null=True)
     designation = models.ForeignKey(to=Designation, on_delete=models.CASCADE, null=True)
     work_location = models.CharField(max_length=100, null=True)

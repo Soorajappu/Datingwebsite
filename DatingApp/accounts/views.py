@@ -10,7 +10,7 @@ from .forms import *
 
 # Create your views here.
 class HomeView(TemplateView):
-    template_name = 'accounts/home.html'
+    template_name = 'dating/home.html'
     
     
 class UserCreateView(CreateView):
@@ -20,6 +20,8 @@ class UserCreateView(CreateView):
     
     def form_valid(self, form):
         user = form.save(commit=False)
+        user.email = form.cleaned_data['email']
+        user.backend = 'django.contrib.auth.backends.ModelBackend'
         user.set_password(user.password)
         user.save()
         login(self.request, user)
@@ -32,7 +34,7 @@ class RegisterBasicDetailView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('accounts:employment')
     
     def get_form_kwargs(self):
-        return {'instance': self.request.user, 'data': self.request.POST}
+        return {'instance': self.request.user, 'data': self.request.POST, 'files': self.request.FILES}
     
     
     def get_initial(self) -> dict[str, any]:

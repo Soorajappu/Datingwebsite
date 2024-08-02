@@ -6,11 +6,14 @@
         <div class="col"></div>
         <div class="col-lg-3 col-md-5 col-sm-6 col-10 mt-5">
             <h1 class='title-sign-up text-center'>User Details Registration</h1>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mb-3">
                     <label for="age">{{ form.age.label }} :</label>
                     {{ form.age }}
+                    {% for error in form.age.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
                 </div>
                 <div class="mb-3">
                     <label for="gender">{{ form.gender.label }} :</label>
@@ -19,6 +22,9 @@
                 <div class="mb-3">
                     <label for="dob">{{ form.dob.label }} :</label>
                     {{ form.dob }}
+                    {% for error in form.dob.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
                 </div>
                 <div class="mb-3">
                     <label for="highest_qualification">{{ form.highest_qualification.label }} :</label>
@@ -54,3 +60,26 @@
     </div>
 </div>
 {% endblock content %}
+{% block scripts %}
+<script>
+    // Set maximum date for the date picker to ensure user is at least 18 years old
+    document.addEventListener('DOMContentLoaded', function() {
+        var today = new Date();
+        var minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+        var maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+        var dobField = document.querySelector('input[name="dob"]');
+
+        if (dobField) {
+            dobField.setAttribute('max', formatDate(maxDate));
+            dobField.setAttribute('min', formatDate(minDate));
+        }
+
+        function formatDate(date) {
+            var day = ("0" + date.getDate()).slice(-2);
+            var month = ("0" + (date.getMonth() + 1)).slice(-2);
+            var year = date.getFullYear();
+            return year + "-" + month + "-" + day;
+        }
+    });
+</script>
+{% endblock scripts %}
