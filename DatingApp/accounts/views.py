@@ -12,6 +12,11 @@ from .forms import *
 class HomeView(TemplateView):
     template_name = 'dating/home.html'
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = User.objects.all()
+        return context
+    
     
 class UserCreateView(CreateView):
     template_name = 'accounts/register.html'

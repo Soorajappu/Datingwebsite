@@ -2,13 +2,114 @@
 {% load static %}
 {% block content %}
 <div class="container-fluid mt-3">
-    <div class="row mb-5">
-        <div class="col"></div>
-        <div class="col-3 mt-3">
-            <h1 class='title-detail text-center'>Welcome Home</h1>
-            
+    <div class="mb-5">
+        <div class="m-3">
+            <div class="shadow">
+                <div class="position-relative justify-content-between align-items-center gap-5" style="display: flex; overflow: hidden; padding-left: 26px; padding-right: 26px;">
+                    <button id="scrollLeft" class="btn position-absolute" style="left: 0; z-index: 10; height: 93px;">
+                        <i class="fa fa-less-than"></i>
+                    </button>
+                    <div  id="storiesContainer" class="position-relative gap-5" style="display: flex; overflow-x: hidden; overflow-y: hidden; scroll-behavior: smooth;">
+                        <div class="position-relative">
+                            <div class="position-relative m-2" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #ae2ac0; padding: 2px;">
+                                <a href="#" class="curser-pointer">
+                                    <img src="{{ user.profile_pic.url }}" class="img-fluid rounded-circle" style="object-fit: cover; width: 100%; height: 100%;" />
+                                    <span class="position-absolute bottom-0 end-0 translate-middle rounded-circle" style="bottom: 0; right: 0; margin: -20px;">
+                                        <i class="fas fa-plus-circle" style="color: #10791e;"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <h6 class="story text-small" >My Story</h6>
+                        </div>
+    
+                        {% for user in users %}
+                        {% if user != request.user %}
+                            <div class="position-relative">
+                                <div class="position-relative m-2" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #ae2ac0; padding: 2px;">
+                                    <a href="#" class="curser-pointer">
+                                        <img src="{{ user.profile_pic.url }}" class="img-fluid rounded-circle" style="object-fit: cover; width: 100%; height: 100%;" />
+                                    </a>
+                                </div>
+                                <h6 class="story text-small" style="display: flex; justify-content: center;" >{{ user.username }}</h6>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+    
+                    </div>
+                    <button id="scrollRight" class="btn position-absolute" style="right: 0; z-index: 10; height: 93px;">
+                        <i class="fa fa-greater-than"></i>
+                    </button>
+                </div>
+                 
+            </div>
         </div>
-        <div class="col"></div>
+
+        <div>
+            <div class="home-opt shadow mx-auto" style="width: 504px; background:#e0cae4; border-radius: 25px; height: 30px; border: 2px solid white;">
+                <ul class="position-relative" style="display: flex; list-style-type: none; justify-content: space-between; padding-left: 0px;">
+                    <li>
+                        <a class="list-item active" onclick="activateSection(this)" href="#" class="curser-pointer" style="text-decoration: none; padding-left: 48px; padding-right: 44px; border-radius: 25px; padding-top: 1px; padding-bottom: 4px;">Near By</a>
+                    </li>
+                    <li>
+                        <a class="list-item inactive" onclick="activateSection(this)" href="#" class="curser-pointer" style="text-decoration: none; padding-left: 48px; padding-right: 48px; border-radius: 25px; padding-top: 1px; padding-bottom: 4px;">Education</a>
+                    </li>
+                    <li>
+                        <a class="list-item inactive" onclick="activateSection(this)" href="#" class="curser-pointer" style="text-decoration: none; padding-left: 48px; padding-right: 48px; border-radius: 25px; padding-top: 1px; padding-bottom: 4px;">Qualification</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <div>
+                <div class="mx-auto gap-5" style="width: 1200px; display: flex; flex-wrap: wrap;">
+                    {% for user in users %}
+                        <div class="shadow position-relative" style="width: 150px; height: 150px; overflow: hidden; border: 2px solid #b13dd4; border-radius: 10px;">
+                            <a href="#" style="text-decoration: none;">
+                                <img src="{{ user.profile_pic.url }}" class="img-fluid" style="object-fit: cover; width: 100%; height: 100%;" />
+                                <h4 class="name-age text-white" style="font-size: 12px">{{ user.username }},{{ user.age }}YRS</h4>
+                                <h5 class="location text-white" style="font-size: 10px">{{ user.designation }}</h5>
+                                <h5 class="location text-white" style="font-size: 10px">{{ user.work_location }}</h5>
+                            </a>
+                            <div>
+                                <p style="margin-top: -144px; margin-left: 2px; color:#03d41f">Online</p>
+                            </div>
+                            <div class="icons-bg icon-container" style="position: absolute; top: 10px; display: inline-grid; gap: 5px;">
+                                <i class="icons-style fas fa-heart zoom-icon" style="margin: 0; padding: 5px; cursor: pointer; background: #c0c0c0"></i>
+                                <i class="icons-style fas fa-comment zoom-icon" style="margin: 0; padding: 5px; cursor: pointer; background: #c0c0c0"></i>
+                                <i class="icons-style fas fa-ellipsis-h zoom-icon" style="margin: 0; padding: 5px; cursor: pointer; background: #c0c0c0"></i>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}
+
+{% block scripts %}
+<script>
+    document.getElementById('scrollLeft').onclick = function() {
+        document.getElementById('storiesContainer').scrollLeft -= 100;
+    };
+    document.getElementById('scrollRight').onclick = function() {
+        document.getElementById('storiesContainer').scrollLeft += 100;
+    };
+
+    function activateSection(element) {
+        // Get all list items
+        const items = document.querySelectorAll('.list-item');
+
+        // Remove 'active' class from all items and add 'inactive' class
+        items.forEach(item => {
+            item.classList.remove('active');
+            item.classList.add('inactive');
+        });
+
+        // Add 'active' class to the clicked item and remove 'inactive' class
+        element.classList.add('active');
+        element.classList.remove('inactive');
+    }
+</script>
+{% endblock scripts %}

@@ -1,5 +1,5 @@
 main {
-    background: #d6d6d6;
+    background: #faf3fa;
     height: 100vh; /* 100% of the viewport height */
     width: 100vw; /* 100% of the viewport width */
     margin: 0; /* Remove default margin */
@@ -11,13 +11,15 @@ label{
     
 }
 
-nav{
+/* nav{
     background-color: #4f1749;
-}
+} */
 
 .nav-title{
     margin-left: 30px;
-    color: white;
+    color: #4f1749;
+    font-weight: 800;
+    font-size: 20px;
 }
 
 .content-section{
@@ -34,6 +36,23 @@ nav{
 .nav-log-btn:hover{
     background: #07003b;
 }
+
+.circle-icon{
+    color: #4f1749;
+}
+
+.img-weel{
+    width: 33px;
+    margin-top: -4px;
+}
+
+.menu-icon{
+    background-color: #db66d0;
+    padding: 6px;
+    border-radius: 50%;
+    color: white;
+}
+
 
 /* styles.css */
 .radio-btn{
@@ -67,4 +86,35 @@ nav{
     background: rgba(255, 255, 255, 0.5); /* Semi-transparent background */
     backdrop-filter: blur(5px); /* Adjust the blur amount */
     z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.nav-opt-btn{
+    background: transparent;
+    border: none;
+    margin-left: 25px;
+    background: white;
+    border-radius: 8px;
+    margin-top: 5px;
+}
+
+.profile-image{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #4f1749;
+    padding: 1px;
+}
+
+.navbar-items{
+    display: flex;
+}
+
+.bell-icon{
+    font-size: 20px;
+    border: solid;
+    border-radius: 50%;
+    padding: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
+    color: #4f1749;
 }

@@ -73,12 +73,22 @@ class User(AbstractUser):
     work_location = models.CharField(max_length=100, null=True)
     skill_level = models.CharField(max_length=20, choices=SKILL_LEVEL_CHOICES)
     slug = models.SlugField(unique=True, blank=True, null=True)
+    reels = models.FileField(upload_to='reels/', blank=True, null=True)
+    profile_images = models.ManyToManyField('UserProfileImage', blank=True)
     
     
     @property
     def is_employer(self):
         return self.company_name is None and self.designation is None and self.work_location is None
 
+    
+class UserProfileImage(models.Model):
+    id = models.AutoField(primary_key=True)
+    image = models.ImageField(upload_to='profile_images/')
+    
+    def __str__(self):
+        return f"Profile image"
+    
     
 # class UserHobbies(models.Model):
 #     id = models.BigAutoField(primary_key=True)
